@@ -1,25 +1,31 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
+
+import JsonData from './data/data.json';
 import About from './Container/About';
 import Blog from './Container/Blog';
 import Home from './Container/Home';
 import Menu from './Container/Menu';
 import Layout from './Components/Layout/Layout';
+// import Contact  from './Container/Contact';
 
-class App extends Component{
-	render() {
-		return(
-			<Layout>
-				<div>
-					<Route path="/" exact component={Home} />
-					<Route path="/about-us" component={About} />
-					<Route path="blog" component={Blog} />
-					<Route path="menu" component={Menu} />
-				</div>
+const App = () => {
+	const [jaysData, setJaysData] = useState({})
+	useEffect(() => {
+		setJaysData(JsonData)
+	}, [])
+	return (
+		<Layout>
+			<div>
+				<Route path="/" exact component={Home} />
+				<Route path="/about-us" render={(props) => <About data={jaysData.About} />} />
+				<Route path="/blog" component={Blog} />
+				<Route path="/menu" render={(props) => <Menu data={jaysData.Menu} /> } />
+				{/* <Route path="/contact" component={Contact} /> */}
+			</div>
 
-			</Layout>
-		)
-	}
+		</Layout>
+	)
 }
 
 export default App;
