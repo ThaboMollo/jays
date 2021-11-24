@@ -9,6 +9,8 @@ import Menu from './Container/Menu';
 import Layout from './Components/Layout/Layout';
 // import Contact  from './Container/Contact';
 
+// You need to make thse mothafuckas PRIVATE!!!
+
 const App = () => {
 	const [jaysData, setJaysData] = useState({})
 	useEffect(() => {
